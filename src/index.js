@@ -81,10 +81,10 @@ class Bot {
     if (window.CLIENT.name === window.LASTCHAT.name) {
       let formatedMessage = `[botmsg][botname]${this.name}: [/botname]${message}[/botmsg]`
       this.socket.emit("chatMsg", { msg: formatedMessage })
-      this.botSendMessage = true
     }
+
+    this.botSendMessage = true
   }
 }
 
-//window.SimpleCytubeBot = Bot;
-window.bot = new Bot({socket: window.socket})
+window.SimpleCytubeBot = Bot;
