@@ -5,6 +5,7 @@ import Command from "./Command"
 
 import CommandDice from "./commands/dice"
 import CommandWebm from "./commands/webm"
+import CommandWho from "./commands/who"
 
 class Bot {
   constructor(config) {
@@ -47,6 +48,7 @@ class Bot {
   registerDefaultCommnds() {
     this.commandRegister(CommandDice)
     this.commandRegister(CommandWebm)
+    this.commandRegister(CommandWho)
   }
 
   applyBotMessageStyles() {
