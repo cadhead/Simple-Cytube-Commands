@@ -4,11 +4,12 @@ import stringifyStyles from "./util/stringifyStyles"
 import Command from "./Command"
 
 import CommandDice from "./commands/dice"
+import CommandWebm from "./commands/webm"
 
 class Bot {
   constructor(config) {
     Object.assign(this, {
-      name: "Пидораха",
+      name: "Bot",
       cmdFilterPrefix: "!",
       commands: [],
       messageStyles: {
@@ -44,7 +45,8 @@ class Bot {
   }
 
   registerDefaultCommnds() {
-    this.commandRegister(new Command(CommandDice))
+    this.commandRegister(CommandDice)
+    this.commandRegister(CommandWebm)
   }
 
   applyBotMessageStyles() {
