@@ -1,3 +1,5 @@
+import randomInteger from "../util/random-int"
+
 function condition(params) {
   return (
     (!params) ||
@@ -5,11 +7,6 @@ function condition(params) {
     (!Number.isInteger(params[1])) ||
     (params[0] > params[1])
   )
-}
-
-function randomInteger(min, max) {
-  let rand = min + Math.random() * (max + 1 - min);
-  return Math.floor(rand);
 }
 
 export default {

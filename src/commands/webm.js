@@ -1,3 +1,5 @@
+import randomInteger from "../util/random-int"
+
 const FETCH_PROXY = "https://yacdn.org/serve/"
 
 const FILE_TYPE_WEBM = 6
@@ -40,11 +42,6 @@ function fetchVideosFromThread(thread) {
 
       return videos
     })
-}
-
-function randomInteger(min, max) {
-  let rand = min + Math.random() * (max + 1 - min);
-  return Math.floor(rand);
 }
 
 const CommandWebm = {
