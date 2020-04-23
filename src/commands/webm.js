@@ -20,29 +20,26 @@ function addMedia(params) {
 }
 
 function getRandomWebm(thread) {
-  let url = thread.slice(0, thread.search(".html"))
-  url += ".json"
-
-  return fetch(`${FETCH_PROXY}${url}`)
-  .then(res => res.json())
-  .then(data => {
-    let videos = fetchVideosFromThread(data)
-    return videos[randomInteger(0, videos.length) - 1]
+  return fetchVideosFromThread(thread).then(videos => {
+    return videos[randomInteger(0, videos.length - 1)]
   })
 }
 
 function fetchVideosFromThread(thread) {
   let videos = []
-
-  for (let post of thread.threads[0].posts) {
-    for (let file of post.files) {
-      if (FILE_TYPES.includes(file.type)) {
-        videos.push(file)
+  return fetch(`${FETCH_PROXY}${thread}`)
+    .then(res => res.json())
+    .then(data => {
+      for (let post of data.threads[0].posts) {
+        for (let file of post.files) {
+          if (FILE_TYPES.includes(file.type)) {
+            videos.push(file)
+          }
+        }
       }
-    }
-  }
 
-  return videos
+      return videos
+    })
 }
 
 function randomInteger(min, max) {
@@ -54,17 +51,44 @@ const CommandWebm = {
   text: "webm",
   handler: (params, data) => {
     if (!params[0]) {
-      return data.bot.sendMessage("Использование: !webm <thread>.")
+      return data.bot.sendMessage("Использование: !webm <thread> [all].")
     }
 
-    getRandomWebm(params[0]).then(webm => {
-      addMedia({
-        user: data.username,
-        video: webm
+    let thread = params[0].slice(0, params[0].search(".html"))
+    thread += ".json"
+
+    if (params[1] === "all") {
+      fetchVideosFromThread(thread).then(videos => {
+        let delay = 1000.
+        let extraDelay = 3000.
+        let count = 0
+
+        let timer = setTimeout(function cb() {
+          addMedia({
+            user: data.username,
+            video: videos[count]
+          })
+
+          count++
+
+          if (count % 10 == 0) delay = extraDelay
+          else delay = 1000.
+
+          clearTimeout(timer)
+
+          if (count < videos.length) timer = setTimeout(cb, delay)
+        }, delay)
       })
-    }).catch(() => {
-      data.bot.sendMessage("Ссылка всратая. Исправляй.")
-    })
+    } else {
+      getRandomWebm(thread).then(webm => {
+        addMedia({
+          user: data.username,
+          video: webm
+        })
+      }).catch(() => {
+        data.bot.sendMessage("Ссылка всратая. Исправляй.")
+      })
+    }
   }
 }
 
