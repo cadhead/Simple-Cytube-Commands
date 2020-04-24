@@ -18,7 +18,7 @@ export default {
     });
 
     if (condition(normalizeParams)) {
-      return data.bot.sendMessage("Использование: !dice <min> <max>")
+      return data.bot.sendMessage(`${data.username}: используй !dice <min> <max>`)
     }
 
     let min = normalizeParams[0]
