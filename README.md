@@ -35,7 +35,7 @@ $.getScript("https://cdn.jsdelivr.net/gh/cadhead/Simple-Cytube-Bot@master/dist/s
     })
   })
 ```
-### Add custom commands
+#### Add custom commands
 ```js
 window.bot /* we declare this previously (see configuration) */
   .commandRegister({
