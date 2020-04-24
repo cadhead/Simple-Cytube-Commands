@@ -25,7 +25,7 @@ export default {
     }
 
     let formatedMessage = PREFIX[randomInteger(0, PREFIX.length-1)] +
-      `${users[randomInteger(0, users.length-1)]} — ${params[0]}` +
+      `${users[randomInteger(0, users.length-1)]} — ${params.join(" ")}` +
       POSTFIX[randomInteger(0, POSTFIX.length-1)]
 
     data.bot.sendMessage(formatedMessage)
