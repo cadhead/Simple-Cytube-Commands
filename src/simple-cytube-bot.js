@@ -12,7 +12,6 @@ class Bot {
     Object.assign(this, {
       name: "Bot",
       cmdFilterPrefix: "!",
-      commands: [],
       messageStyles: {
         message: {
           display: "inline"
@@ -23,6 +22,7 @@ class Bot {
       }
     }, config)
 
+    this.commands = []
     this.botSendMessage = false
 
     this.registerListeners(config.socket)
