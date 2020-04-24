@@ -25,11 +25,17 @@ class Bot {
     this.commands = []
     this.botSendMessage = false
 
-    this.registerListeners(config.socket)
-    this.registerDefaultCommnds()
-    this.applyBotMessageStyles()
+    try {
+      this.registerListeners(config.socket)
+      this.registerDefaultCommnds()
+      this.applyBotMessageStyles()
 
-    console.log("Simple Cytube Bot successfuly initialzed!")
+      console.log("Simple Cytube Bot successfuly initialzed!")
+    } catch (err) {
+      console.log("Simple Cytube Bot can't be initialzed.")
+      
+      throw new Error(err)
+    }
   }
 
   registerListeners(socket) {
