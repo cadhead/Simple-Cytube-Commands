@@ -103,7 +103,7 @@ class Bot {
   randomReply(data) {
     const { username } = data
 
-    if (Math.random <= 0.2) {
+    if (Math.random() <= 0.2) {
       this.sendMessage(
         `${username}: ` +
         this.randomReplies[randomInteger(0, this.randomReplies.length-1)]
