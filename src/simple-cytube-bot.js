@@ -41,6 +41,7 @@ class Bot {
     socket.on("chatMsg", data => {
       if (this.botSendMessage) {
         this.botSendMessage = false
+        window.LASTCHAT.name = ""
       }
 
       if (this.randomReplies.length) {
@@ -65,8 +66,8 @@ class Bot {
     let nameStyles = stringifyStyles(this.messageStyles.name)
 
     elementStyle.innerHTML = "/* Simple Cytube Bot Styles */ "
-    elementStyle.innerHTML += `div[class*='${this.name}'] { ${messageStyles} }`
-    elementStyle.innerHTML += `div[class*='${this.name}'] .username { ${nameStyles} }`
+    elementStyle.innerHTML += `.chat-msg-bot { ${messageStyles} }`
+    elementStyle.innerHTML += `.bot-name { ${nameStyles} }`
 
     document.head.appendChild(elementStyle)
   }
@@ -90,12 +91,10 @@ class Bot {
   }
 
   sendMessage(message) {
-    window.addChatMessage({
-      username: this.name,
-      msg: message,
-      meta: {},
-      time: Date.now()
-    })
+    if (window.CLIENT.name === window.LASTCHAT.name) {
+      let formatedMessage = `[botmsg][botname]${this.name}: [/botname]${message}[/botmsg]`
+      this.socket.emit("chatMsg", { msg: formatedMessage })
+    }
 
     this.botSendMessage = true
   }
@@ -103,7 +102,7 @@ class Bot {
   randomReply(data) {
     const { username } = data
 
-    if (Math.random() <= 0.2) {
+    if (Date.now().toString()[12] > 5) {
       this.sendMessage(
         `${username}: ` +
         this.randomReplies[randomInteger(0, this.randomReplies.length-1)]
