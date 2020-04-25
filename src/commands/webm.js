@@ -12,7 +12,7 @@ function addMedia(params) {
 
   if (window.CLIENT.name === user) {
     window.socket.emit("queue", {
-      id: `https://2ch.hk${video.path}`,
+      id: `https://2ch.pm${video.path}`,
       title: video.fullname,
       pos: "end",
       type: "fi",

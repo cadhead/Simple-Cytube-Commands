@@ -1,5 +1,6 @@
 import filterMessage from "./util/message-filter"
 import stringifyStyles from "./util/stringifyStyles"
+import randomInteger from "./util/random-int"
 
 import Command from "./Command"
 
@@ -16,7 +17,8 @@ class Bot {
         name: {
           color: "pink"
         }
-      }
+      },
+      randomReplies: []
     }, config)
 
     this.commands = []
@@ -38,8 +40,11 @@ class Bot {
   registerListeners(socket) {
     socket.on("chatMsg", data => {
       if (this.botSendMessage) {
-        window.LASTCHAT.name = ""
         this.botSendMessage = false
+      }
+
+      if (this.randomReplies.length) {
+        this.randomReply(data)
       }
 
       if (data.msg[0] === this.cmdFilterPrefix) {
@@ -93,6 +98,18 @@ class Bot {
     })
 
     this.botSendMessage = true
+  }
+
+  randomReply(data) {
+    const { username } = data
+
+    if (Math.random <= 0.2) {
+      this.sendMessage(
+        `${username}: ` +
+        this.randomReplies[randomInteger(0, this.randomReplies.length-1)]
+      )
+    }
+    
   }
 }
 
