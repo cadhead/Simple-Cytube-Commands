@@ -40,8 +40,8 @@ class Bot {
   registerListeners(socket) {
     socket.on("chatMsg", data => {
       if (this.botSendMessage) {
-        this.botSendMessage = false
         window.LASTCHAT.name = ""
+        this.botSendMessage = false
       }
 
       if (this.randomReplies.length) {
@@ -103,15 +103,12 @@ class Bot {
     const { username } = data
 
     if (username === "[server]") return
-    if (this._randomReplyCD > Date.now()) return
 
-    if (Math.random() > 0.5) {
+    if (Math.random() > 0.9) {
       this.sendMessage(
         `${username}: ` +
         this.randomReplies[randomInteger(0, this.randomReplies.length-1)]
       )
-
-      this._randomReplyCD = Date.now() + 60 * 3 * 1000
     }
     
   }
