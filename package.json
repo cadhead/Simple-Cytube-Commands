@@ -4,7 +4,7 @@
   "description": "Very simple client side cytube bot.",
   "main": "index.js",
   "scripts": {
-    "build": "parcel build src/simple-cytube-bot.js --public-url ./",
+    "build": "parcel build src/simple-cytube-bot.js --public-url ./ --no-source-maps",
     "test": "eslint src"
   },
   "keywords": [],

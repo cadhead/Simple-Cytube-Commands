@@ -13,9 +13,6 @@ class Bot {
       name: "Bot",
       cmdFilterPrefix: "!",
       messageStyles: {
-        message: {
-          display: "inline"
-        },
         name: {
           color: "pink"
         }
@@ -63,8 +60,8 @@ class Bot {
     let nameStyles = stringifyStyles(this.messageStyles.name)
 
     elementStyle.innerHTML = "/* Simple Cytube Bot Styles */ "
-    elementStyle.innerHTML += `.chat-msg-bot { ${messageStyles} }`
-    elementStyle.innerHTML += `.bot-name { ${nameStyles} }`
+    elementStyle.innerHTML += `div[class*='${this.name}'] { ${messageStyles} }`
+    elementStyle.innerHTML += `div[class*='${this.name}'] .username { ${nameStyles} }`
 
     document.head.appendChild(elementStyle)
   }
@@ -88,10 +85,12 @@ class Bot {
   }
 
   sendMessage(message) {
-    if (window.CLIENT.name === window.LASTCHAT.name) {
-      let formatedMessage = `[botmsg][botname]${this.name}: [/botname]${message}[/botmsg]`
-      this.socket.emit("chatMsg", { msg: formatedMessage })
-    }
+    window.addChatMessage({
+      username: this.name,
+      msg: message,
+      meta: {},
+      time: Date.now()
+    })
 
     this.botSendMessage = true
   }

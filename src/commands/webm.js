@@ -48,7 +48,7 @@ const CommandWebm = {
   text: "webm",
   handler: (params, data) => {
     if (!params[0]) {
-      return data.bot.sendMessage(`${data.username}: используй !webm <thread> [all].`)
+      return data.bot.sendMessage(`${data.username}: используй !webm <thread> [all]`)
     }
 
     let thread = params[0].slice(0, params[0].search(".html"))

@@ -15,7 +15,7 @@ export default {
   text: "who",
   handler: (params, data) => {
     if (!params[0]) {
-      return data.bot.sendMessage(`${data.username}: используй !who <something>.`)
+      return data.bot.sendMessage(`${data.username}: используй !who <something>`)
     }
 
     const userlistElems = document.getElementById("userlist").children;
