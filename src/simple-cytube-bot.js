@@ -105,7 +105,7 @@ class Bot {
     if (username === "[server]") return
     if (this._randomReplyCD > Date.now()) return
 
-    if (Date.now().toString()[12] > 5) {
+    if (Math.random() > 0.5) {
       this.sendMessage(
         `${username}: ` +
         this.randomReplies[randomInteger(0, this.randomReplies.length-1)]
