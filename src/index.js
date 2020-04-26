@@ -4,6 +4,7 @@ import Command from "./Command"
 
 import CommandDice from "./commands/dice"
 import CommandWebm from "./commands/webm"
+import CommandHelp from "./commands/help"
 
 class SimpleCytubeCommands {
   constructor(config) {
@@ -41,6 +42,7 @@ class SimpleCytubeCommands {
   registerDefaultCommands() {
     this.commandRegister(CommandDice)
     this.commandRegister(CommandWebm)
+    this.commandRegister(CommandHelp)
   }
 
   commandRegister(config) {
