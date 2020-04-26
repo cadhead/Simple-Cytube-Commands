@@ -1,4 +1,4 @@
-# Simple-Cytube-Bot
+# Simple-Cytube-Commands
 Custom commands handler for Cytube.
 
 ### Installation ###
