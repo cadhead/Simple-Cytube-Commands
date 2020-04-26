@@ -5,16 +5,12 @@ import Command from "./Command"
 import CommandDice from "./commands/dice"
 import CommandWebm from "./commands/webm"
 import CommandHelp from "./commands/help"
+import CommandClear from "./commands/clear"
 
 class SimpleCytubeCommands {
   constructor(config) {
     Object.assign(this, {
-      cmdFilterPrefix: "!",
-      messageStyles: {
-        name: {
-          color: "pink"
-        }
-      },
+      cmdFilterPrefix: "!"
     }, config)
 
     this.commands = []
@@ -23,9 +19,9 @@ class SimpleCytubeCommands {
       this.registerListeners(config.socket)
       this.registerDefaultCommands()
 
-      console.log("Simple Cytube Bot successfuly initialized!")
+      console.log("Simple Cytube Commands successfuly initialized!")
     } catch (err) {
-      console.log("Simple Cytube Bot can't be initialized.")
+      console.log("Simple Cytube Commands can't be initialized.")
       
       throw new Error(err)
     }
@@ -40,9 +36,10 @@ class SimpleCytubeCommands {
   }
 
   registerDefaultCommands() {
+    this.commandRegister(CommandHelp)
     this.commandRegister(CommandDice)
     this.commandRegister(CommandWebm)
-    this.commandRegister(CommandHelp)
+    this.commandRegister(CommandClear)
   }
 
   commandRegister(config) {
