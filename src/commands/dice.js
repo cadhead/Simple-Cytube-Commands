@@ -11,6 +11,7 @@ function condition(params) {
 
 const CommandDice = {
   text: "dice",
+  description: "Выводит случайно число от <min> до <max>",
   handler: (params, data) => {
     let normalizeParams = params.map(param => {
       let number = parseInt(param);
@@ -25,7 +26,7 @@ const CommandDice = {
     let max = normalizeParams[1]
     let num = randomInteger(min, max)
 
-    data.context.sendMessage(`бросает кости... Выпало ${num}`)
+    data.context.sendMessage(`/me бросает кости... Выпало ${num}`)
   }
 }
 

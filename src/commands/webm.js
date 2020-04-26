@@ -46,6 +46,7 @@ function fetchVideosFromThread(thread) {
 
 const CommandWebm = {
   text: "webm",
+  description: "Добавляет случайное видео из треда на 2ch.hk; опция all добавит все видео из треда",
   handler: (params, data) => {
     if (!params[0]) {
       return data.context.sendHelpMessage(`Использование: !webm <thread> [all]`)

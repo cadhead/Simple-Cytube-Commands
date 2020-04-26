@@ -8,18 +8,15 @@ import CommandWebm from "./commands/webm"
 class SimpleCytubeCommands {
   constructor(config) {
     Object.assign(this, {
-      name: "Bot",
       cmdFilterPrefix: "!",
       messageStyles: {
         name: {
           color: "pink"
         }
       },
-      randomReplies: []
     }, config)
 
     this.commands = []
-    this.botSendMessage = false
 
     try {
       this.registerListeners(config.socket)
@@ -71,8 +68,8 @@ class SimpleCytubeCommands {
   sendHelpMessage(message) {
     message = message.replace(/</g, '&#60;').trim();
     message = message.replace(/>/g, '&#62;').trim();
-    
-    window.addChatMessage({username: "[server]", meta: {
+
+    window.addChatMessage({ username: "[server]", meta: {
       addClass: "server-whisper",
       addClassToNameAndTimestamp: true
     }, msg: message, time: new Date() + 5 })
