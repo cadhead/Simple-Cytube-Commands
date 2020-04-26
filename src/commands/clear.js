@@ -4,7 +4,7 @@ export default {
   handler: (params, data) => {
     if (window.CLIENT.name === data.username) {
       document.querySelector("#messagebuffer").innerHTML = ""
-      data.context.sendMessage("You cleared chat.")
+      data.context.sendHelpMessage("You cleared chat.")
     }
   }
 }
