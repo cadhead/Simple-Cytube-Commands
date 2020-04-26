@@ -1,10 +1,10 @@
 {
-  "name": "simple-cytube-bot",
+  "name": "simple-cytube-commands",
   "version": "1.0.0",
-  "description": "Very simple client side cytube bot.",
+  "description": "Custom commands handler for Cytube.",
   "main": "index.js",
   "scripts": {
-    "build": "parcel build src/simple-cytube-bot.js --public-url ./ --no-source-maps",
+    "build": "parcel build src/index.js --public-url ./ --out-file scc.min.js --no-source-maps",
     "test": "eslint src"
   },
   "keywords": [],

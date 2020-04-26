@@ -48,7 +48,7 @@ const CommandWebm = {
   text: "webm",
   handler: (params, data) => {
     if (!params[0]) {
-      return data.bot.sendMessage(`${data.username}: используй !webm <thread> [all]`)
+      return data.context.sendHelpMessage(`Использование: !webm <thread> [all]`)
     }
 
     let thread = params[0].slice(0, params[0].search(".html"))
@@ -83,7 +83,7 @@ const CommandWebm = {
           video: webm
         })
       }).catch(() => {
-        data.bot.sendMessage("Ссылка всратая. Исправляй.")
+        data.context.sendHelpMessage(`Не получилось добавить видео в плейлист. ${data.username}, попробуй снова.`)
       })
     }
   }

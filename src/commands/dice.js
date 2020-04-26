@@ -9,7 +9,7 @@ function condition(params) {
   )
 }
 
-export default {
+const CommandDice = {
   text: "dice",
   handler: (params, data) => {
     let normalizeParams = params.map(param => {
@@ -18,13 +18,15 @@ export default {
     });
 
     if (condition(normalizeParams)) {
-      return data.bot.sendMessage(`${data.username}: используй !dice <min> <max>`)
+      return data.context.sendHelpMessage(`Использование !dice <min> <max>`)
     }
 
     let min = normalizeParams[0]
     let max = normalizeParams[1]
     let num = randomInteger(min, max)
 
-    data.bot.sendMessage(`${data.username} бросает кости... Выпало ${num}`)
+    data.context.sendMessage(`бросает кости... Выпало ${num}`)
   }
 }
+
+export default CommandDice

@@ -1,20 +1,20 @@
 # Simple-Cytube-Bot
-Very simple client side cytube bot.
+Custom commands handler for Cytube.
 
 ### Installation ###
 
 #### CDN install (via jsdelivr)
 
 ```js
-$.getScript("https://cdn.jsdelivr.net/gh/cadhead/Simple-Cytube-Bot@master/dist/simple-cytube-bot.js",
+$.getScript("https://cdn.jsdelivr.net/gh/cadhead/Simple-Cytube-Commands@master/dist/scc.min.js",
   function() {
-    window.bot = new SimpleCytubeBot({ socket: socket })
+    window.MyCustomCommands = new SimpleCytubeCommands({ socket: socket })
   })
 ```
 #### Self build
 for build minified version (using [parcel](https://github.com/parcel-bundler/parcel))
 ```
-git clone https://github.com/cadhead/Simple-Cytube-Bot.git
+git clone https://github.com/cadhead/Simple-Cytube-Commands.git
 npm run build
 ```
 
@@ -22,33 +22,27 @@ npm run build
 
 #### Configuraion
 ```js
-$.getScript("https://cdn.jsdelivr.net/gh/cadhead/Simple-Cytube-Bot@master/dist/simple-cytube-bot.js",
+$.getScript("https://cdn.jsdelivr.net/gh/cadhead/Simple-Cytube-Commands@master/dist/scc.min.js",
   function() {
-    window.bot = new SimpleCytubeBot({ 
+    window.MyCustomCommands = new SimpleCytubeCommands({ 
       socket: socket,
-      name: "Bot",
-      cmdFilterPrefix: "!",
-      messageStyles: {
-        message: { background: "pink" },
-        name: { color: "pink" }
-      }
+      filterPrefix: "!",
+      chatFilter: "[filter]"
     })
   })
 ```
-#### Add custom commands
+#### Add commands
 ```js
-window.bot /* we declare this previously (see configuration) */
+window.MyCustomCommands /* we declare this previously (see configuration) */
   .commandRegister({
-    text: "help"
+    text: "help",
+    description: "Just another custom command.",
     handler: (params, data) => {
       // params it's all words after "!help"
       // e.g. !help my cool params = !help params[0] params[1] params[2]
       
-      // data contains information about user
+      // data contains information about user and message
       // { username, msg, meta, timestamp }
-      
-      // you also can use bot's methods, using data.bot
-      // e.g. data.bot.sendMesage("Hello world!")
     }
   })
 ```
