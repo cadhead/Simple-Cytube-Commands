@@ -69,6 +69,9 @@ class SimpleCytubeCommands {
   }
 
   sendHelpMessage(message) {
+    message = message.replace(/</g, '&#60;').trim();
+    message = message.replace(/>/g, '&#62;').trim();
+    
     window.addChatMessage({username: "[server]", meta: {
       addClass: "server-whisper",
       addClassToNameAndTimestamp: true
