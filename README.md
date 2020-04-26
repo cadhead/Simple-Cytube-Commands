@@ -26,8 +26,7 @@ $.getScript("https://cdn.jsdelivr.net/gh/cadhead/Simple-Cytube-Commands@master/d
   function() {
     window.MyCustomCommands = new SimpleCytubeCommands({ 
       socket: socket,
-      filterPrefix: "!",
-      chatFilter: "[filter]"
+      filterPrefix: "!"
     })
   })
 ```
