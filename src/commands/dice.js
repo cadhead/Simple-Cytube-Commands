@@ -26,7 +26,9 @@ const CommandDice = {
     let max = normalizeParams[1]
     let num = randomInteger(min, max)
 
-    data.context.sendMessage(`/me бросает кости... Выпало ${num}`)
+    if (window.CLIENT.name === data.username) {
+      data.context.sendMessage(`/me бросает кости... Выпало ${num}`)
+    }
   }
 }
 
