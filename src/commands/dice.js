@@ -10,7 +10,7 @@ function condition(params) {
 }
 
 const CommandDice = {
-  text: "dice",
+  text: "roll",
   description: "Выводит случайно число от <min> до <max>",
   handler: (params, data) => {
     let normalizeParams = params.map(param => {
