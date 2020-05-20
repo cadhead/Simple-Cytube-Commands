@@ -10,7 +10,8 @@ import CommandClear from "./commands/clear"
 class SimpleCytubeCommands {
   constructor(config) {
     Object.assign(this, {
-      cmdFilterPrefix: "!"
+      cmdFilterPrefix: "!",
+      cmdWebmProxyLink: "https://cors-anywhere.herokuapp.com/"
     }, config)
 
     this.commands = []

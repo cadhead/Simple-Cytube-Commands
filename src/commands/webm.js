@@ -1,7 +1,5 @@
 import randomInteger from "../util/random-int"
 
-const FETCH_PROXY = "https://yacdn.org/serve/"
-
 const FILE_TYPE_WEBM = 6
 const FILE_TYPE_MP4 = 10
 
@@ -21,15 +19,15 @@ function addMedia(params) {
   }
 }
 
-function getRandomWebm(thread) {
-  return fetchVideosFromThread(thread).then(videos => {
+function getRandomWebm(thread, proxy) {
+  return fetchVideosFromThread(thread, proxy).then(videos => {
     return videos[randomInteger(0, videos.length - 1)]
   })
 }
 
-function fetchVideosFromThread(thread) {
+function fetchVideosFromThread(thread, proxy) {
   let videos = []
-  return fetch(`${FETCH_PROXY}${thread}`)
+  return fetch(`${ proxy }${ thread }`)
     .then(res => res.json())
     .then(data => {
       for (let post of data.threads[0].posts) {
@@ -56,7 +54,8 @@ const CommandWebm = {
     thread += ".json"
 
     if (params[1] === "all") {
-      fetchVideosFromThread(thread).then(videos => {
+      console.log(data)
+      fetchVideosFromThread(thread, data.context.cmdWebmProxyLink).then(videos => {
         let delay = 1000.
         let extraDelay = 3000.
         let count = 0
@@ -78,7 +77,7 @@ const CommandWebm = {
         }, delay)
       })
     } else {
-      getRandomWebm(thread).then(webm => {
+      getRandomWebm(thread, data.context.cmdWebmProxyLink).then(webm => {
         addMedia({
           user: data.username,
           video: webm
